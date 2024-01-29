@@ -34,16 +34,4 @@ public class ChatController {
         return chatMessage;
     }
 
-    @GetMapping("/getAllMessages")
-    public List<ChatMessage> getAllMessages() {
-          return chatService.getAllMessages();
-    }
-
-    @DeleteMapping("/deleteChats")
-    public String deleteAllChats() {
-        chatService.deleteAllChats();
-//        jdbcTemplate.execute("DROP DATABASE defaultdb");
-        return "Delete chats successfully";
-    }
-
 }

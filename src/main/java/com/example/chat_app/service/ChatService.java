@@ -36,10 +36,5 @@ public class ChatService {
     public void saveMessage(ChatMessage chatMessage){
         chatRepository.save(chatMessage);
     }
-    public List<ChatMessage> getAllMessages() {
-        return chatRepository.findAll();
-    }
-    public void deleteAllChats(){
-        chatRepository.deleteAll();
-    }
+
 }

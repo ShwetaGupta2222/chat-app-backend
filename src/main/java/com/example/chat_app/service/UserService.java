@@ -40,11 +40,4 @@ public class UserService {
         userRepository.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    public List<User> getAllUser(){
-          return userRepository.findAll();
-    }
-    public void deleteAllUser(){
-        userRepository.deleteAll();
-    }
-
 }

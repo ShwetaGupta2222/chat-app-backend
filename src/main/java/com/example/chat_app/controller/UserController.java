@@ -5,7 +5,6 @@ import com.example.chat_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -33,18 +32,6 @@ public class UserController {
     @GetMapping("/changePassword")
     public ResponseEntity<String> changePassword(@RequestParam String newPassword,String username){
         return userService.changePassword(newPassword,username  );
-    }
-
-    @GetMapping("/getAllUsers")
-    public List<User> gelAllUsers(){
-        return userService.getAllUser();
-    }
-
-    @DeleteMapping("/deleteUsers")
-    public String deleteAllUsers() {
-        userService.deleteAllUser();
-//        jdbcTemplate.execute("DROP DATABASE defaultdb");
-        return "Database dropped successfully";
     }
 
 }
