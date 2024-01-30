@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
-public interface ChatRepository extends JpaRepository<ChatMessage, Long> {
+public interface ChatRepository extends JpaRepository<ChatMessage, String> {
     List<ChatMessage> findBySender(String sender);
     List<ChatMessage> findByReceiver(String receiver);
 }

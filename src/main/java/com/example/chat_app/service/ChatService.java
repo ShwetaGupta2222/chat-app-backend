@@ -12,11 +12,9 @@ public class ChatService {
     private ChatRepository chatRepository;
     @Autowired
     private UserRepository userRepository;
-
     public Map<String, List<ChatMessage>> getAllChats(String username) {
         Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+        if (optionalUser.isPresent()){
             Map<String, List<ChatMessage>> userMessages = new HashMap<>();
             List<ChatMessage> sentMessages = chatRepository.findBySender(username);
             List<ChatMessage> receivedMessages = chatRepository.findByReceiver(username);
@@ -33,8 +31,12 @@ public class ChatService {
             throw new Error("User not found");
         }
     }
-    public void saveMessage(ChatMessage chatMessage){
-        chatRepository.save(chatMessage);
+    public ChatMessage saveMessage(ChatMessage chatMessage){
+        return chatRepository.save(chatMessage);
     }
+    public void deleteChatsByIds(List<String> chatIds){
+        chatRepository.deleteAllById(chatIds);
+    }
+
 
 }

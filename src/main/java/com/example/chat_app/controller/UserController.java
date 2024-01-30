@@ -1,6 +1,7 @@
 package com.example.chat_app.controller;
 import com.example.chat_app.Model.LoginDetails;
 import com.example.chat_app.Model.User;
+import com.example.chat_app.repository.UserRepository;
 import com.example.chat_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user){
         return userService.registerUser(user);
@@ -31,7 +31,7 @@ public class UserController {
     }
     @GetMapping("/changePassword")
     public ResponseEntity<String> changePassword(@RequestParam String newPassword,String username){
-        return userService.changePassword(newPassword,username  );
+        return userService.changePassword(newPassword,username);
     }
 
 }
