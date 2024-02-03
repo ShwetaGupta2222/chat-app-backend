@@ -1,13 +1,10 @@
 package com.example.chat_app.controller;
 import com.example.chat_app.Model.ChatMessage;
-import com.example.chat_app.Model.User;
-import com.example.chat_app.repository.ChatRepository;
-import com.example.chat_app.repository.UserRepository;
+import com.example.chat_app.Model.DeleteMessages;
 import com.example.chat_app.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -32,6 +29,11 @@ public class ChatController {
     @MessageMapping("/message")
     public void processMessage(@Payload ChatMessage chatMessage) {
         simpMessagingTemplate.convertAndSendToUser(chatMessage.getReceiver(),"/private",chatMessage);
+    }
+
+    @MessageMapping("/delete")
+    public void processDeleteMessage(@Payload DeleteMessages deleteMessages) {
+        simpMessagingTemplate.convertAndSendToUser(deleteMessages.getDeletedTo(),"/delete",deleteMessages);
     }
     @PostMapping("/addMessage")
     public ChatMessage saveMessage(@RequestBody ChatMessage chatMessage) {
