@@ -1,6 +1,9 @@
 package com.example.chat_app.controller;
 import com.example.chat_app.Model.ChatMessage;
 import com.example.chat_app.Model.DeleteMessages;
+import com.example.chat_app.Model.User;
+import com.example.chat_app.repository.ChatRepository;
+import com.example.chat_app.repository.UserRepository;
 import com.example.chat_app.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +45,19 @@ public class ChatController {
     @DeleteMapping("/deleteAllChats")
     public void deleteAllChats(@RequestBody List<String> chatIds){
         chatService.deleteChatsByIds(chatIds);
+    }
+
+    @Autowired
+    public UserRepository userRepository;
+    @Autowired
+    public ChatRepository chatRepository;
+    @GetMapping("/getC")
+    public List<ChatMessage> sa() {
+        return chatRepository.findAll();
+    }
+    @GetMapping("/get")
+    public List<User> de(){
+        return userRepository.findAll();
     }
 
 }
